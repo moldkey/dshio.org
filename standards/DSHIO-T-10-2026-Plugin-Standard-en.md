@@ -156,7 +156,7 @@ of flow from the declaration.
 | Type | Meaning | Effect on judgement |
 |---|---|---|
 | **Model-independent** | Functionality does not depend on a specific model | T0–T4 suffice |
-| **Model-dependent** | Behaviour depends on model capability | Also requires T5, and the verdict must name the model |
+| **Model-dependent** | Behaviour depends on model capability | Also requires T5, and the verdict shall name the model |
 
 **Basis:** model access is provided by separate plugins (`dsh-llm-*`), not by the
 harness core, so install, mount and boot are inherently model-independent.
@@ -183,7 +183,7 @@ which are advisory.
 
 #### 5.1.1 Plugin declaration
 
-`package.json` **must** contain a `dsh.bundle.patch` field whose value is the
+`package.json` **shall** contain a `dsh.bundle.patch` field whose value is the
 path of the patch file relative to the package root.
 
 ```json
@@ -200,7 +200,7 @@ path of the patch file relative to the package root.
 
 #### 5.1.2 Patch file exists
 
-The file referenced by `dsh.bundle.patch` **must** exist inside the published package.
+The file referenced by `dsh.bundle.patch` **shall** exist inside the published package.
 
 **Criterion:** the file can be fetched from a public CDN (unpkg / jsdelivr / npmmirror).
 
@@ -209,7 +209,7 @@ the patch file.
 
 #### 5.1.3 Patch file is valid YAML
 
-The patch file **must** be parseable by a YAML 1.2 parser.
+The patch file **shall** be parseable by a YAML 1.2 parser.
 
 **Criterion:** `yaml.safe_load()` does not raise.
 
@@ -226,7 +226,7 @@ In YAML, `@` is a reserved indicator; unquoted it fails to parse.
 
 #### 5.1.4 Patch structure
 
-The top level of the patch file **must** be an array containing at least one item
+The top level of the patch file **shall** be an array containing at least one item
 with an `insert` field.
 
 ```yaml
@@ -239,7 +239,7 @@ with an `insert` field.
 
 #### 5.1.5 Entry completeness
 
-Every entry in the `insert` list **must** contain a non-empty string `id` and a
+Every entry in the `insert` list **shall** contain a non-empty string `id` and a
 non-empty string `name`.
 
 | Field | Requirement |
@@ -251,7 +251,7 @@ non-empty string `name`.
 
 #### 5.1.6 Optional entry fields
 
-The following fields are optional; when present they **must** conform to the
+The following fields are optional; when present they **shall** conform to the
 official schema:
 
 | Field | Type | Purpose |
@@ -284,7 +284,7 @@ accepted) and record it as a suggested improvement only.
 
 #### 5.2.2 Version range includes the baseline version
 
-The range declared in `engines.dsh` **must** include the current baseline version.
+The range declared in `engines.dsh` **shall** include the current baseline version.
 
 **Criterion:** use semver rules to decide whether `0.2.2-rc.1` falls inside the range.
 
@@ -304,7 +304,7 @@ explicit exact-version exemption.
 
 #### 5.2.3 Code entry point
 
-`package.json` **must** declare a code entry point: `main` or `exports`, at least one.
+`package.json` **shall** declare a code entry point: `main` or `exports`, at least one.
 
 **Pure configuration plugins** (the "configuration" class in 4.1) may have an empty
 `apply()`, but a usable entry is still mandatory — otherwise the install check fails.
@@ -325,7 +325,7 @@ extensions.
 
 #### 5.3.1 `files` array completeness
 
-If a `files` array is declared, it **must** include:
+If a `files` array is declared, it **shall** include:
 
 - `lib` (or the directory containing the entry file)
 - the patch file
@@ -337,7 +337,7 @@ covers the value of `dsh.bundle.patch` (compare after stripping a leading `./`).
 
 #### 5.3.2 No local-path dependencies
 
-The values of the following fields **must not** start with `file:` or `/`:
+The values of the following fields **shall not** start with `file:` or `/`:
 
 `dependencies`, `optionalDependencies`, `peerDependencies`, `dsh`
 
@@ -358,14 +358,14 @@ For reference, official plugins are typically 1–20 MB.
 
 #### 5.4.1 Installable
 
-The plugin **must** be resolvable and installable into a DSH profile from the public
+The plugin **shall** be resolvable and installable into a DSH profile from the public
 npm registry or a specified Git repository.
 
 **Criterion:** stage T1. See DSHIO/T 20 and DSHIO/T 21.
 
 #### 5.4.2 Listable
 
-After installation the plugin **must** appear in the profile's dependency list.
+After installation the plugin **shall** appear in the profile's dependency list.
 
 **Criterion:** stage T2.
 
@@ -373,7 +373,7 @@ After installation the plugin **must** appear in the profile's dependency list.
 
 #### 5.4.3 Mountable
 
-The plugin's entry **must** appear in the output of `dsh --dump-config`.
+The plugin's entry **shall** appear in the output of `dsh --dump-config`.
 
 **Criterion:** stage T3. Runs with networking disabled.
 
@@ -382,14 +382,14 @@ The plugin's entry **must** appear in the output of `dsh --dump-config`.
 
 #### 5.4.4 Bootable
 
-After loading the plugin the profile **must** start and stay alive for at least
+After loading the plugin the profile **shall** start and stay alive for at least
 12 consecutive seconds.
 
 **Criterion:** stage T4. Runs with networking disabled.
 
 #### 5.4.5 Tool contract (tool plugins)
 
-Every registered tool **must** satisfy:
+Every registered tool **shall** satisfy:
 
 | Field | Requirement |
 |---|---|
@@ -405,7 +405,7 @@ during stage T5.
 
 #### 5.5.1 Tool description states when to use it
 
-Every tool's `description` **must** let someone unfamiliar with the plugin decide
+Every tool's `description` **shall** let someone unfamiliar with the plugin decide
 **under what circumstances the tool should be called**.
 
 **Non-conforming examples:**
@@ -423,7 +423,7 @@ tell when to use this rather than something else?
 
 #### 5.5.2 Declared permissions match behaviour
 
-The permission set a plugin declares **must**:
+The permission set a plugin declares **shall**:
 - cover the capabilities it actually uses (no under-reporting)
 - not declare capabilities it does not use (no over-reporting)
 
@@ -437,7 +437,7 @@ Declaring `network` together with (`shell` or `fs-write`) is a red line.
 
 **Criterion:** read the permission declaration statically.
 
-**Exception:** where genuinely necessary, the README **must** state:
+**Exception:** where genuinely necessary, the README **shall** state:
 1. why network is needed
 2. why write or shell is needed
 3. the direction of data flow
@@ -472,7 +472,7 @@ human judgement required.**
 
 ### 6.2 Dynamic layer (T1–T4)
 
-**Must run in a sandbox conforming to DSHIO/T 21.**
+**Shall run in a sandbox conforming to DSHIO/T 21.**
 
 | Clause | Stage | Command |
 |---|---|---|
@@ -485,12 +485,12 @@ human judgement required.**
 
 ### 6.3 Model-dependent layer (T5, model-dependent plugins only)
 
-**A model-related environment fingerprint must be recorded** (see DSHIO/T 21 chapter 6).
+**A model-related environment fingerprint shall be recorded** (see DSHIO/T 21 chapter 6).
 
 Method: under a named model, use a fixed prompt to request a call to a tool the
 plugin registers, repeated 3 times.
 
-**Pass criteria (the report must state which one was used):**
+**Pass criteria (the report shall state which one was used):**
 - all: 3 of 3 correct invocations (for certification)
 - majority: at least 2 of 3 (for evaluation; not usable for certification)
 
@@ -498,7 +498,7 @@ plugin registers, repeated 3 times.
 
 **5.5.1 and 5.5.2 can only be judged by a human.**
 
-The output must be "human judgement required + guiding questions"; it must not
+The output shall be "human judgement required + guiding questions"; it shall not
 produce a pass or fail conclusion.
 
 ---
@@ -519,7 +519,7 @@ produce a pass or fail conclusion.
 independent inspection object.
 
 Different versions of the same plugin (including patch versions) are different
-objects and must be judged separately.
+objects and shall be judged separately.
 
 ### 7.3 Verdict rules
 
@@ -553,13 +553,13 @@ objects and must be judged separately.
 | Type | Minimum runs | Consistency |
 |---|---|---|
 | Static inspection | 1 | — |
-| Dynamic inspection (public release) | **2** | The two verdicts must be identical |
+| Dynamic inspection (public release) | **2** | The two verdicts shall be identical |
 | T5 (public release) | **3** | Per the criteria in 6.3 |
 
 **When the two dynamic verdicts differ:**
 1. Record as "unstable"
 2. Record both full outputs
-3. Must not be used as a basis for certification
+3. shall not be used as a basis for certification
 
 ### 7.5 Re-inspection
 
@@ -580,9 +580,9 @@ Tested: YYYY-MM-DD
 Environment fingerprint: dsh=0.2.2-rc.1;img=...;node=...;pnpm=...
 ```
 
-**The following must also be declared:**
+**The following shall also be declared:**
 - the clause scope covered by the inspection (if only the static layer was run,
-  this must be stated)
+  this shall be stated)
 - the environment fingerprint
 - the inspection date
 

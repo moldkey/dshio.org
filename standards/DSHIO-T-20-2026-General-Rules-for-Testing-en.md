@@ -79,7 +79,7 @@ The source of fact a stage uses for its verdict, e.g. "the command exit code" or
 
 The raw output of the stage, used to support the verdict and to permit review.
 
-**Evidence for all stages must be retained in full**; retaining only the verdict is
+**Evidence for all stages shall be retained in full**; retaining only the verdict is
 not acceptable.
 
 ---
@@ -98,7 +98,7 @@ not acceptable.
 **T0–T4 are model-independent stages.** Basis: model access is provided by separate
 plugins, not by the harness core.
 
-**The order T0 → T1 → T2 → T3 → T4 must be followed.** T5 is optional after T4 passes.
+**The order T0 → T1 → T2 → T3 → T4 shall be followed.** T5 is optional after T4 passes.
 
 ---
 
@@ -171,7 +171,7 @@ DSH profile.
 ### 6.2 Prerequisites
 
 - a clean profile (no pre-existing plugin dependencies)
-- network available (the package must be downloaded)
+- network available (the package shall be downloaded)
 - resource limits per DSHIO/T 21 clause 5.1
 
 ### 6.3 Operation
@@ -190,7 +190,7 @@ dsh plugin --profile web add <package-spec>
 | The added-dependency line in the output | `+ <package> <version>` |
 | The profile's `package.json` | `dependencies` contains the package |
 
-**All three must agree.** Exit code 0 with the dependency not written is not success.
+**All three shall agree.** Exit code 0 with the dependency not written is not success.
 
 ### 6.5 Verdict
 
@@ -202,7 +202,7 @@ dsh plugin --profile web add <package-spec>
 
 ### 6.6 First error
 
-On failure, the first non-empty line of the output that locates the cause must be
+On failure, the first non-empty line of the output that locates the cause shall be
 extracted as `first_error`.
 
 **Excluded:** pure JSON lines, box-drawing lines (`╭`, `│`, `╰`), progress lines
@@ -322,7 +322,7 @@ starting.
 dsh --profile web
 ```
 
-After starting, observe for **12 seconds**; the process must stay alive throughout.
+After starting, observe for **12 seconds**; the process shall stay alive throughout.
 
 ### 9.4 Observation targets
 
@@ -343,7 +343,7 @@ After starting, observe for **12 seconds**; the process must stay alive througho
 | Exited within 12 s | **`boot_failed`**, terminate |
 | Timeout (see DSHIO/T 21 clause 5.1.6) | **`boot_failed`** |
 
-### 9.6 Why the network must be off
+### 9.6 Why the network shall be off
 
 **Two reasons:**
 
@@ -387,14 +387,14 @@ registers.
 
 ### 10.5 Verdict
 
-**The report must state which criterion was used:**
+**The report shall state which criterion was used:**
 
 | Criterion | Definition | Use |
 |---|---|---|
 | **All** | 3 of 3 correct invocations | certification |
 | **Majority** | at least 2 of 3 | evaluation |
 
-**A T5 verdict must name the model.** A T5 report that says only "pass" without
+**A T5 verdict shall name the model.** A T5 report that says only "pass" without
 naming the model is void.
 
 ### 10.6 Why T5 is not part of T0–T4
@@ -424,14 +424,14 @@ deterministic stages would make the whole verdict appear unreliable.
 **Once a stage's verdict is a failure, later stages are not executed and their
 results are recorded as "not executed".**
 
-"Not executed" must not be treated as "failed", nor as "passed".
+"Not executed" shall not be treated as "failed", nor as "passed".
 
 ### 11.3 Unstable
 
 **When repeated executions yield different verdicts:**
 1. Record the verdict as `unstable`
 2. Retain the full evidence of every repetition
-3. Must not be used as a basis for certification
+3. shall not be used as a basis for certification
 
 **Common sources of instability:**
 - network fluctuation (T1)
@@ -442,7 +442,7 @@ results are recorded as "not executed".**
 
 ## 12 Evidence requirements
 
-### 12.1 Evidence that must be retained
+### 12.1 Evidence that shall be retained
 
 | Stage | Evidence |
 |---|---|
@@ -459,7 +459,7 @@ results are recorded as "not executed".**
 2. Permit third-party review
 3. Let the author locate the problem
 
-**A test report that retains only verdicts and no evidence is not reviewable and must
+**A test report that retains only verdicts and no evidence is not reviewable and shall
 not be used as a basis for certification.**
 
 ---

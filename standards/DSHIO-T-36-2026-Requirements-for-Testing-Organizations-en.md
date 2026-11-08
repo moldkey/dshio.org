@@ -28,7 +28,7 @@
 ## 1 Scope
 
 This standard specifies the conditions that organizations issuing DSHIO test reports
-must satisfy, and what such reports must contain.
+shall satisfy, and what such reports shall contain.
 
 **This standard does not specify:** certification, accreditation, admission, or registration.
 **There is no gate. There are only conditions.**
@@ -54,9 +54,9 @@ Traditional testing-lab accreditation (apply → review → certificate → annu
 ```
 Anyone can test
     ↓
-but must follow DSHIO/T 20 methods and DSHIO/T 21 conditions
+but shall follow DSHIO/T 20 methods and DSHIO/T 21 conditions
     ↓
-must publish the environment fingerprint and full evidence
+shall publish the environment fingerprint and full evidence
     ↓
 anyone — the author, another lab, a passer-by — can reproduce or challenge
 ```
@@ -97,7 +97,7 @@ they cover the same clauses.
 
 ---
 
-## 4 Conditions a testing organization must meet
+## 4 Conditions a testing organization shall meet
 
 ### 4.1 Mandatory conditions
 
@@ -114,7 +114,7 @@ they cover the same clauses.
 
 ### 4.2 Conflict-of-interest statement
 
-**A testing organization must publicly state:**
+**A testing organization shall publicly state:**
 
 1. Whether it develops or sells DSH plugins
 2. Whether it has a commercial relationship with the plugin's author
@@ -122,7 +122,7 @@ they cover the same clauses.
 
 **If any applies:**
 
-- It must be marked prominently in the report
+- It shall be marked prominently in the report
 - **The related plugin should be retested by another organization**
   (not mandatory — but without such a retest, readers judge credibility for themselves)
 
@@ -138,8 +138,8 @@ they cover the same clauses.
 
 How a testing organization charges its clients is its own business. However:
 
-- It must not pay DSHIO anything related to a report (DSHIO charges nothing)
-- It must not charge under the name of "DSHIO authorisation" (there is no such thing)
+- It shall not pay DSHIO anything related to a report (DSHIO charges nothing)
+- It shall not charge under the name of "DSHIO authorisation" (there is no such thing)
 
 ---
 
@@ -155,7 +155,7 @@ Per DSHIO/T 21 clause 7. **Additional requirements:**
 | **Raw evidence address** | Publicly reachable |
 | **Environment fingerprint** | Complete, including the `perm` component (DSHIO/T 21 §5.2) |
 
-**The report must state explicitly:**
+**The report shall state explicitly:**
 
 > This is a test report. **It does not constitute certification.**
 > DSHIO does not currently offer certification.
@@ -289,7 +289,7 @@ DSHIO/T 37  Submission format  ── how to publish results
 DSHIO/T 32  Certification rules ── not in effect
 ```
 
-**This standard answers "what conditions must a report satisfy", not "how to test" (T20/T21).**
+**This standard answers "what conditions shall a report satisfy", not "how to test" (T20/T21).**
 
 **This standard does not concern certification.** Certification is a separate matter,
 and is not currently offered.

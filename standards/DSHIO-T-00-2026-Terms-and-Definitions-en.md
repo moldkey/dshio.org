@@ -105,7 +105,7 @@ a standard, and publishes that determination.
 A software unit that provides one or more capabilities to DSH. Distributed as an npm
 package, declaring its position in the config tree via `cordis.patch.yml`.
 
-**Criterion (all three must hold):**
+**Criterion (all three shall hold):**
 
 1. `package.json` contains a `dsh.bundle.patch` field
 2. The patch file that field points to exists
@@ -197,7 +197,7 @@ The order of config composition. Later overrides earlier:
 An isolated container runtime used to install and run plugins without affecting the
 host.
 
-**A sandbox in this standards system must:**
+**A sandbox in this standards system shall:**
 - be isolated from the host
 - be able to limit CPU, memory and network
 - be destroyed after each test
@@ -227,7 +227,7 @@ A requirement whose result depends on the model used. Typically:
 - prompt compatibility
 - token cost
 
-**In this standards system, any verdict on a model-dependent requirement must name the
+**In this standards system, any verdict on a model-dependent requirement shall name the
 model used.**
 
 #### 3.4.3
@@ -285,7 +285,7 @@ The conclusion of a test run. This standards system defines five:
 
 The property that repeating under identical test conditions yields an identical verdict.
 
-**Requirement:** any publicly published verdict must be executed at least twice with
+**Requirement:** any publicly published verdict shall be executed at least twice with
 consistent results.
 
 #### 3.5.5
@@ -332,7 +332,7 @@ installation. Typical cases:
 
 A publicly registered deviation where a standard's requirement conflicts with reality.
 
-**An exception must include:** which clause, why, the scope of impact, and the
+**An exception shall include:** which clause, why, the scope of impact, and the
 validity period.
 
 **An unregistered deviation is not an exception; it is non-conformance.**
@@ -344,7 +344,7 @@ The first instance that fully implements a standard and passes all its clauses.
 
 **Purpose:** to prove the standard is executable.
 
-**Rule:** a standard must have a reference implementation before publication. A
+**Rule:** a standard shall have a reference implementation before publication. A
 standard without one may not move from "trial" to "current".
 
 ---
@@ -377,6 +377,31 @@ three levels: `low`, `medium`, `high`.
 **The determination method is in DSHIO/T 24.**
 
 ---
+
+## 3.x Modal verbs
+
+This standard follows **ISO/IEC Directives Part 2** (and, for Chinese, GB/T 1.1—2020
+Annex C) for modal verbs. The mapping is one-to-one:
+
+| Clause type | English | Chinese | Not used |
+|---|---|---|---|
+| **Requirement** | **shall** | 應 | must, is required to |
+| **Requirement (negative)** | **shall not** | 不應 | must not, may not |
+| **Recommendation** | **should** | 宜 | ought to, is recommended to |
+| **Recommendation (negative)** | **should not** | 不宜 | — |
+| **Permission** | **may** | 可 | is allowed to |
+| **Permission (negative)** | **need not** | 不必 / 可以不 / 無須 | may not, cannot |
+| **Capability / possibility** | **can / cannot** | 能 / 不能 | — |
+
+> **Why not "must".**
+> "must" carries the sense of a legal obligation in common-law drafting, the same
+> problem "必須" has in Chinese standards. A standard binds a party only after that
+> party declares conformance; it does not impose statutory duties. ISO/IEC and
+> GB/T both reserve "shall" for requirements and avoid "must".
+
+> **"cannot" is not a requirement.**
+> "cannot" states a capability limit. To express "not permitted", write "shall not".
+
 
 ## 4 Abbreviations
 

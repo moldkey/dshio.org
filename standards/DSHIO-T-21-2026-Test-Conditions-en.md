@@ -72,13 +72,13 @@ The terms defined in DSHIO/T 00—2026 apply. **Additional definitions:**
 
 ### 3.1 fixed condition
 
-An environmental factor that must not change during a test run. Changing any one of
-them constitutes a new test, and its result must not be compared with the original.
+An environmental factor that shall not change during a test run. Changing any one of
+them constitutes a new test, and its result shall not be compared with the original.
 
 ### 3.2 variable condition
 
 A condition that is permitted to change within a single test run. Variable conditions
-must be recorded item by item in the test report.
+shall be recorded item by item in the test report.
 
 ### 3.3 test environment fingerprint
 
@@ -110,7 +110,7 @@ the named model.
 
 ### 5.1 Fixed condition list
 
-**The following conditions must be fixed during T0–T4 and must be written into the
+**The following conditions shall be fixed during T0–T4 and shall be written into the
 test report.**
 
 #### 5.1.1 DSH version
@@ -118,7 +118,7 @@ test report.**
 | Item | Requirement |
 |---|---|
 | Value form | The raw output of `dsh --version` |
-| Granularity | **Must be exact to the pre-release identifier** (e.g. `0.2.2-rc.1`, not `0.2.2` or `0.2.x`) |
+| Granularity | **Shall be exact to the pre-release identifier** (e.g. `0.2.2-rc.1`, not `0.2.2` or `0.2.x`) |
 | Used for | Whether the string matches the plugin's `engines.dsh` range |
 
 **Current baseline version:** `0.2.2-rc.1`
@@ -131,10 +131,10 @@ test report.**
 | Item | Requirement |
 |---|---|
 | Image name | `dsh-sandbox:5.0` |
-| Must record | image name + **digest** (`sha256:...`) |
+| Shall record | image name + **digest** (`sha256:...`) |
 | Base system | derived from `node:20-slim` |
 
-**Must be fixed inside the image:**
+**Shall be fixed inside the image:**
 
 | Component | Version |
 |---|---|
@@ -162,11 +162,11 @@ test report.**
 |---|---|---|
 | T0 | not needed | — |
 | **T1 install** | **network required** | default |
-| **T2 list** | **network must be off** | `--network none` |
-| **T3 mount** | **network must be off** | `--network none` |
-| **T4 boot** | **network must be off** | `--network none` |
+| **T2 list** | **network shall be off** | `--network none` |
+| **T3 mount** | **network shall be off** | `--network none` |
+| **T4 boot** | **network shall be off** | `--network none` |
 
-> **Why T2–T4 must have no network.**
+> **Why T2–T4 shall have no network.**
 > During install a plugin can fetch anything from the network. With the network off,
 > any lingering request fails and is exposed; and even a malicious plugin has nowhere
 > to send data. This is a security design as well as a reproducibility design.
@@ -192,7 +192,7 @@ From T2 onward they are tightened progressively.
 | T3 mount | `90 s` | `config_failed` |
 | T4 boot | `90 s` (including the 12 s liveness observation) | `boot_failed` |
 
-**The 12-second liveness observation at T4:** after the profile starts it must stay
+**The 12-second liveness observation at T4:** after the profile starts it shall stay
 alive for 12 consecutive seconds without exiting to pass.
 
 > **Where 12 seconds comes from.** Long enough to cover the common failure window of
@@ -208,14 +208,14 @@ alive for 12 consecutive seconds without exiting to pass.
 | DSH_HOME | `/home/node/.dsh` |
 | Test profile name | `web` |
 | Profile initialisation | automatically from the factory template on first use |
-| State before the test | **must be clean** (no pre-existing plugin dependencies, no pre-existing patch) |
+| State before the test | **shall be clean** (no pre-existing plugin dependencies, no pre-existing patch) |
 
 **What "clean" means:** in the profile directory, `package.json`'s `dependencies` has
 no entries other than the target plugin of this test.
 
 #### 5.1.8 Command sequence
 
-**The command sequence for T1–T4 must be identical, verbatim:**
+**The command sequence for T1–T4 shall be identical, verbatim:**
 
 ```bash
 # T1 install (network on)
@@ -237,13 +237,13 @@ dsh --profile web
 
 | Situation | Minimum runs | Consistency requirement |
 |---|---|---|
-| Verdict published publicly | **2** | The two verdicts must be exactly the same |
+| Verdict published publicly | **2** | The two verdicts shall be exactly the same |
 | Internal batch testing | 1 | — |
 
 **When the two verdicts differ:**
 1. Record the verdict as `unstable`
-2. Both full outputs must be recorded
-3. An unstable result must not be used as a basis for certification
+2. Both full outputs shall be recorded
+3. An unstable result shall not be used as a basis for certification
 
 ---
 
@@ -260,7 +260,7 @@ dsh=<DSH version>;img=<image name>@<digest>;node=<node version>;pnpm=<pnpm versi
 dsh=0.2.2-rc.1;img=dsh-sandbox:5.0@sha256:abc123...;node=24.11.1;pnpm=9.15.9;mem=768m;cpu=1
 ```
 
-**Same fingerprint = same conditions.** When fingerprints differ, results must not be
+**Same fingerprint = same conditions.** When fingerprints differ, results shall not be
 compared directly.
 
 ---
@@ -277,19 +277,19 @@ model can reverse the conclusion entirely.
 
 ### 6.2 Fixed conditions
 
-**In addition to all conditions in chapter 5, T5 must also fix the following:**
+**In addition to all conditions in chapter 5, T5 shall also fix the following:**
 
 #### 6.2.1 Model identifier
 
 | Item | Requirement |
 |---|---|
-| Must record | model ID **and version identifier** |
+| Shall record | model ID **and version identifier** |
 | Prohibited | vendor name only (e.g. "DeepSeek") or series name only (e.g. "V4") |
 | Example | `deepseek-v4.1-flash-0731` |
 
 #### 6.2.2 Generation parameters
 
-| Parameter | Must record |
+| Parameter | Shall record |
 |---|---|
 | temperature | ✅ |
 | max_tokens | ✅ |
@@ -313,9 +313,9 @@ model can reverse the conclusion entirely.
 
 | Item | Requirement |
 |---|---|
-| Tool count (total tools available in the same round) | must record |
-| Parallel tool calling enabled | must record |
-| Tool-selection strategy (if configurable) | must record |
+| Tool count (total tools available in the same round) | shall record |
+| Parallel tool calling enabled | shall record |
+| Tool-selection strategy (if configurable) | shall record |
 
 > **Why record the total tool count.** The more candidate tools, the higher the chance
 > the model picks wrong. "Pick correctly among 3 tools" and "among 200" are not the
@@ -328,7 +328,7 @@ model can reverse the conclusion entirely.
 | Publicly published T5 verdict | **3** |
 | Internal evaluation | 1 |
 
-**Pass criteria (choose one; the report must state which):**
+**Pass criteria (choose one; the report shall state which):**
 
 | Criterion | Definition | Use |
 |---|---|---|
@@ -386,12 +386,12 @@ deviation.
 
 ### 8.2 Requirements for deviation
 
-**Deviation is not prohibited, but it must:**
+**Deviation is not prohibited, but it shall:**
 
 1. Be marked explicitly in the report as "condition deviation"
 2. List item by item what deviated, what it was changed to, and why
-3. **The verdict must not be compared with undeviated reports**
-4. **Must not be used as a basis for certification**
+3. **The verdict shall not be compared with undeviated reports**
+4. **shall not be used as a basis for certification**
 
 ### 8.3 Common deviations
 
@@ -461,7 +461,7 @@ DSHIO/T 21  Test Conditions (this document)
       ↓ referenced by
 DSHIO/T 20  General Rules for Testing  ← what each stage does
       ↓ referenced by
-DSHIO/T 10  Plugin Standard            ← what a plugin must achieve
+DSHIO/T 10  Plugin Standard            ← what a plugin shall achieve
       ↓ referenced by
 DSHIO/T 32  Certification Rules        ← how conformance is certified
 ```

@@ -43,10 +43,10 @@ cannot tell whether a difference comes from the plugin or from the writing.
 
 **Once the format is fixed, "pass" means the same thing for every submitter.**
 
-### 2.2 The format must be machine-checkable
+### 2.2 The format shall be machine-checkable
 
 Reviewing every submission by hand is not realistic.
-**It must be checkable by a script, with a predictable outcome.**
+**It shall be checkable by a script, with a predictable outcome.**
 
 ### 2.3 But only completeness can be checked
 
@@ -113,8 +113,8 @@ Do not put multiple versions in one directory.
 | `version` | string | Exact plugin version tested |
 | `tested_at` | string | `YYYY-MM-DD HH:MM:SS` |
 | `timezone` | string | e.g. `+08:00` |
-| `baseline_dsh` | string | Must equal the directory version (without `v`) |
-| `standard` | string | Must mention `DSHIO/T 20` and `DSHIO/T 21` |
+| `baseline_dsh` | string | Shall equal the directory version (without `v`) |
+| `standard` | string | Shall mention `DSHIO/T 20` and `DSHIO/T 21` |
 | `fingerprint` | string | Environment fingerprint, see 4.3 |
 | `stages` | object | Five stages, see 4.4 |
 | `verdict` | string | One of five values, see DSHIO/T 00 §3.5.3 |
@@ -122,7 +122,7 @@ Do not put multiple versions in one directory.
 
 ### 4.3 Environment fingerprint
 
-Must follow DSHIO/T 21 §5.2:
+Shall follow DSHIO/T 21 §5.2:
 
 ```
 dsh=<version>;img=<image>@<digest>;node=<version>;pnpm=<version>;mem=<mem>;cpu=<cpu>[:perm=<permissions>]
@@ -133,15 +133,15 @@ dsh=<version>;img=<image>@<digest>;node=<version>;pnpm=<version>;mem=<mem>;cpu=<
 
 ### 4.4 Stage records
 
-`stages` must contain five keys: `static`, `install`, `list`, `config`, `boot`.
+`stages` shall contain five keys: `static`, `install`, `list`, `config`, `boot`.
 
-Each stage object must include at least:
+Each stage object shall include at least:
 
 ```json
 {"exit": 0, "duration": 3.4, "stdout": "...", "stderr": "..."}
 ```
 
-**Raw output may be truncated, but truncation must be marked:**
+**Raw output may be truncated, but truncation shall be marked:**
 
 ```json
 {"stdout_truncated": true, "stdout_bytes_total": 481203}
@@ -155,7 +155,7 @@ Each stage object must include at least:
 | `verdicts` | The verdict of each run |
 | `consistent` | Whether the runs agreed |
 
-**A submission with `consistent: false` must be marked unstable and may not be used for endorsement.**
+**A submission with `consistent: false` shall be marked unstable and may not be used for endorsement.**
 
 ### 4.6 Required fields in `TESTER.yaml`
 
@@ -171,7 +171,7 @@ Each stage object must include at least:
 
 ### 4.7 Conflict of interest (mandatory)
 
-`conflicts` must contain three keys, none optional:
+`conflicts` shall contain three keys, none optional:
 
 | Key | Type | Notes |
 |---|---|---|
@@ -189,7 +189,7 @@ Each stage object must include at least:
 
 ### 4.8 `README.md` requirements
 
-Must state:
+Shall state:
 
 1. Plugin name and version
 2. DSH version used
